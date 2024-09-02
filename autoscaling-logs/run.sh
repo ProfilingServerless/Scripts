@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -x
+
 # The experiment is for 480 seconds
 # No warmup, starts with steady 20 RPS load. 
 # Then the truoghput will change at 300th second and logs are recorded for 90 seconds.

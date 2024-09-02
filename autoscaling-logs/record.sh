@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -x
+
 server_exec() {
     ssh -oStrictHostKeyChecking=no -p 22 "$1" "$2";
 }
