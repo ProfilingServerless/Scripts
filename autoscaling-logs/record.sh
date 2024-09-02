@@ -4,9 +4,7 @@ server_exec() {
     ssh -oStrictHostKeyChecking=no -p 22 "$1" "$2";
 }
 
-cd ~
 mkdir -p ~/outs && rm ~/outs/*
-
 
 WAIT_TIME=$1
 DURATION=$2
@@ -37,6 +35,6 @@ for worker in "$@"; do
     server_exec $worker ./terminate-worker.sh
     server_exec $worker "tar czf ~/outs.tar.gz --directory=~/outs ~"
     scp $MASTER_NODE:/home/users/mghgm/outs.tar.gz "~/outs/worker-$i.tar.gz"
-    i = i + 1
+    ((i+=1))
 done
 echo "Terminated all sessions"
