@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -x
+
 cd ~ 
 
 declare -A pods
@@ -15,11 +17,11 @@ mkdir -p outs && rm ~/outs/*
 
 declare -A sessions
 sessions=(
-    ["bind"]="kubectl -n kube-system logs --since=30s -f ${pods[bind]} | grep 'Pod Scheduled Successfully'"
-    ["create"]="kubectl -n kube-system logs --since=30s -f ${pods[create]} | grep 'Controller created pod'"
-    ["dec"]="kubectl -n knative-serving logs --since=30s -f ${pods[dec]} | grep -E 'For=.* PodCount=.*' | jq '.'"
-    ["patch"]="kubectl -n knative-serving logs --since=30s -f ${pods[patch]} | grep -E 'Successfully scaled to' | jq '.'"
-    ["ticks"]="kubectl -n knative-serving logs --since=30s -f ${pods[ticks]} | grep -E 'For=.*Ticked' | jq '.'"
+    ["bind"]="kubectl -n kube-system logs --since=30s -f ${pods[bind]} | grep 'Pod Scheduled Successfully' > ~/outs/bind"
+    ["create"]="kubectl -n kube-system logs --since=30s -f ${pods[create]} | grep 'Controller created pod' > ~/outs/create"
+    ["dec"]="kubectl -n knative-serving logs --since=30s -f ${pods[dec]} | grep -E 'For=.* PodCount=.*' | jq '.' > ~/outs/dec"
+    ["patch"]="kubectl -n knative-serving logs --since=30s -f ${pods[patch]} | grep -E 'Successfully scaled to' | jq '.' > ~/outs/patch"
+    ["ticks"]="kubectl -n knative-serving logs --since=30s -f ${pods[ticks]} | grep -E 'For=.*Ticked' | jq '.' > ~/outs/ticks"
 )
 
 for session in "${!sessions[@]}"; do
