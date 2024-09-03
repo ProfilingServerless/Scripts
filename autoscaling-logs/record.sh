@@ -37,15 +37,15 @@ done
 echo "Waiting for $DURATION seconds"
 sleep $DURATION
 
-server_exec $MASTER_NODE "$SCRIPT_PATH/terminate-master.sh"
-server_exec $MASTER_NODE "cd ~ && tar czf outs.tar.gz --directory=outs ."
-scp $MASTER_NODE:/users/mghgm/outs.tar.gz ~/outs/master.tar.gz 
-
-i=1
-for worker in "$@"; do
-    server_exec $worker "$SCRIPT_PATH/terminate-worker.sh"
-    server_exec $worker "cd ~ && tar czf outs.tar.gz --directory=outs ."
-    scp $MASTER_NODE:/users/mghgm/outs.tar.gz ~/outs/worker-$i.tar.gz
-    ((i+=1))
-done
-echo "Terminated all sessions"
+# server_exec $MASTER_NODE "$SCRIPT_PATH/terminate-master.sh"
+# server_exec $MASTER_NODE "cd ~ && tar czf outs.tar.gz --directory=outs ."
+# scp $MASTER_NODE:/users/mghgm/outs.tar.gz ~/outs/master.tar.gz 
+#
+# i=1
+# for worker in "$@"; do
+#     server_exec $worker "$SCRIPT_PATH/terminate-worker.sh"
+#     server_exec $worker "cd ~ && tar czf outs.tar.gz --directory=outs ."
+#     scp $MASTER_NODE:/users/mghgm/outs.tar.gz ~/outs/worker-$i.tar.gz
+#     ((i+=1))
+# done
+# echo "Terminated all sessions"
