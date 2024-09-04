@@ -7,7 +7,7 @@ mkdir -p ~/outs && rm ~/outs/*
 
 declare -A sessions
 sessions=(
-    ["e2e"]="sudo journalctl --since \""$(date -d "30 seconds ago" +"%Y-%m-%d %H:%M:%S")"\" -f -u kubelet | grep E2E > ~/outs/e2e"
+    ["e2e"]="sudo journalctl --since \""$(date -d "30 seconds ago" +"%Y-%m-%d %H:%M:%S")"\" -f -u kubelet | grep --line-buffered E2E > ~/outs/e2e 2>&1"
 )
 
 # Loop through the sessions array
