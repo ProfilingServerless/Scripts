@@ -8,6 +8,7 @@ mkdir -p $RES_DIR
 cd $RES_DIR
 
 scp -r vhive-loader:/users/mghgm/outs/* .
+scp vhive-loader:/user/mghgm/loader/data/trace/example/invocations.csv .
 
 echo "Extracting logs ..."
 cd $RES_DIR
@@ -24,6 +25,4 @@ rm *.tar.gz
 
 cd ..
 echo "All logs are extracted"
-
-mkdir -p "$RES_DIR/clean"
-RESULT_PATH=$RES_DIR python pods.py
+echo "run 'RES_DIR=$RES_DIR ./parse.sh'"
