@@ -11,7 +11,7 @@ MASTER_NODE=$1
 # just workers on params
 shift
 
-SCRIPT_PATH="~/control-plane-scripts/autoscaling-logs"
+SCRIPT_PATH="~/control-plane-scripts/record-autoscaling-logs"
 
 tmux kill-session -t "exp"
 

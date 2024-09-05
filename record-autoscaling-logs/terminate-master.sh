@@ -6,7 +6,7 @@ sessions=(
     ["create"]=""
     ["dec"]=""
     ["patch"]=""
-    ["ticks"]=""
+    ["decision"]=""
 )
 
 echo "Terminating all log collection tmux sessions..."

@@ -10,7 +10,7 @@ pods=(
     ["create"]="$(kubectl -n kube-system get pods -l component=kube-controller-manager -o jsonpath='{.items[0].metadata.name}')"
     ["dec"]="$(kubectl -n knative-serving get pods -l app=autoscaler -o jsonpath='{.items[0].metadata.name}')"
     ["patch"]="$(kubectl -n knative-serving get pods -l app=autoscaler -o jsonpath='{.items[0].metadata.name}')"
-    ["ticks"]="$(kubectl -n knative-serving get pods -l app=autoscaler -o jsonpath='{.items[0].metadata.name}')"
+    ["decision"]="$(kubectl -n knative-serving get pods -l app=autoscaler -o jsonpath='{.items[0].metadata.name}')"
 )
 
 mkdir -p outs && rm ~/outs/*
@@ -21,8 +21,7 @@ sessions=(
     ["create"]="kubectl -n kube-system logs --since=30s -f ${pods[create]} | grep --line-buffered 'Controller created pod' > ~/outs/create 2>&1"
     ["dec"]="kubectl -n knative-serving logs --since=30s -f ${pods[dec]} | grep  --line-buffered -E 'For=.* PodCount=.*' > ~/outs/dec 2>&1"
     ["patch"]="kubectl -n knative-serving logs --since=30s -f ${pods[patch]} | grep --line-buffered -E 'Successfully scaled to' > ~/outs/patch 2>&1"
-    ["patchtest"]="kubectl -n knative-serving logs --since=30s -f ${pods[patch]} | grep --line-buffered -E 'Successfully scaled to'"
-    ["ticks"]="kubectl -n knative-serving logs --since=30s -f ${pods[ticks]} | grep --line-buffered -E 'For=.*Ticked' > ~/outs/ticks 2>&1"
+    ["decision"]="kubectl -n knative-serving logs --since=30s -f ${pods[decision]} | grep --line-buffered -E 'Decided in.*' > ~/outs/decision 2>&1"
 )
 
 for session in "${!sessions[@]}"; do

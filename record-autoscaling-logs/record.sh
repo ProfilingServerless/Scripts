@@ -10,7 +10,7 @@ mkdir -p ~/outs && rm ~/outs/*
 
 WAIT_TIME=$1
 DURATION=$2
-SCRIPT_PATH="~/control-plane-scripts/autoscaling-logs"
+SCRIPT_PATH="~/control-plane-scripts/record-autoscaling-logs"
 shift 2
 
 common_init() {
