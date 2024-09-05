@@ -25,5 +25,5 @@ rm *.tar.gz
 cd ..
 echo "All logs are extracted"
 
+mkdir -p "$RES_DIR/clean"
 RESULT_PATH=$RES_DIR python pods.py
-# RESULT_PATH=$RES_DIR python autoscaler.py

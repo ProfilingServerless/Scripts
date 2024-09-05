@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import csv
 from datetime import datetime
 
 def parse_decision_file(filepath):
@@ -138,13 +139,52 @@ def get_patch_duration(decisions, patches):
             durations[deployment].append(timestamp - decision_timestamp[0])
     return durations
             
+def get_schedule_durations(create_data, bind_data):
+    durations = {}
+    for pod in bind_data:
+        if pod in create_data:
+            durations[pod] = time_to_microseconds(bind_data[pod][0]) - time_to_microseconds(create_data[pod][0])
+    return durations
 
+def get_startup_durations(bind_data, e2es_data):
+    durations = {}
+    for pod in e2es_data:
+        if pod in bind_data:
+            durations[pod] = time_to_microseconds(e2es_data[pod][1]) - time_to_microseconds(bind_data[pod][0])
+    return durations
+
+def save_pods(filepath, schedule_duratinos, startup_durations):
+    with open(filepath, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['pod', 'scheduling_duration', 'startup_duration'])
+        
+        for pod in schedule_duratinos:
+            scheduling_duration = schedule_duratinos[pod]
+            startup_duration = startup_durations[pod] if pod in startup_durations else "??"
+            writer.writerow([pod, scheduling_duration, startup_duration])
+
+def save_decisions(filepath, decisions):
+    with open(filepath, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['deployment', 'decision_duration'])
+        
+        for deployment in decisions:
+            for _, duration, _ in decisions[deployment]:
+                writer.writerow([deployment, duration])
+    
+def save_patches(filepath, apply_durations):
+    with open(filepath, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['deployment', 'patch_duration'])
+        
+        for deployment in apply_durations:
+            for duration in apply_durations[deployment]:
+                writer.writerow([deployment, duration])
 
 def main():
     FILE_PATH = os.getenv("RESULT_PATH")
     
     decisions = parse_decision_file(f'{FILE_PATH}/decision')
-    dec = parse_dec_file(f'{FILE_PATH}/dec')
     patches = parse_patch_file(f"{FILE_PATH}/patch")
     
     create_data = read_logs(f'{FILE_PATH}/create', parse_creation_line)
@@ -153,9 +193,9 @@ def main():
     
     print("====L1====")
     for deployment in decisions:
-        for duration, _, _ in decisions[deployment]:
+        for _, duration, _ in decisions[deployment]:
             print(duration, end=' ')
-    
+
     print()
     print("====L2====")
     apply_durations = get_patch_duration(decisions, patches)
@@ -163,7 +203,22 @@ def main():
         for duration in apply_durations[deployment]:
             print(duration, end=' ')
 
+    print()
+    print("====L3====")
+    schedule_duratinos = get_schedule_durations(create_data, bind_data)
+    for pod in schedule_duratinos:
+        print(schedule_duratinos[pod], end=' ')
 
+    print()
+    print("====L4====")
+    startup_durations = get_startup_durations(bind_data, e2es_data)
+    for pod in startup_durations:
+        print(startup_durations[pod])
+   
+    save_decisions(f'{FILE_PATH}/clean/decisions.csv', decisions)
+    save_patches(f'{FILE_PATH}/clean/patches.csv', apply_durations)
     
+    save_pods(f'{FILE_PATH}/clean/pods.csv', schedule_duratinos, startup_durations) 
+     
 if __name__ == "__main__":
     main()
