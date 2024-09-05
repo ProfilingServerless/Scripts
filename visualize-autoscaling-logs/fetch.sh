@@ -26,4 +26,4 @@ cd ..
 echo "All logs are extracted"
 
 RESULT_PATH=$RES_DIR python pods.py
-RESULT_PATH=$RES_DIR python autoscaler.py
+# RESULT_PATH=$RES_DIR python autoscaler.py

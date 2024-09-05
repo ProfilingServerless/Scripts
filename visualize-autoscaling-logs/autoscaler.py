@@ -85,12 +85,13 @@ def time_to_microseconds(time_str):
     microseconds = (time_obj.hour * 3600 + time_obj.minute * 60 + time_obj.second) * 1_000_000 + time_obj.microsecond
     return microseconds
 
-
 def main():
     FILE_PATH = os.getenv("RESULT_PATH")
     ticks = parse_ticks_file(f'{FILE_PATH}/ticks')
     decisions = parse_decision_file(f'{FILE_PATH}/dec')
     patches = parse_patch_file(f"{FILE_PATH}/patch")
-  
+
+    
+
 if __name__ == "__main__":
     main()
