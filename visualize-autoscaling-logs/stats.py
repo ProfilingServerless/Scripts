@@ -2,13 +2,16 @@ import csv
 import numpy as np
 import os
 
+from numpy._core.defchararray import isdigit
+
 def read_csv_column(filepath, column_index):
     values = []
     with open(filepath, mode='r') as file:
         csv_reader = csv.reader(file)
         next(csv_reader)  # Skip the header
         for row in csv_reader:
-            values.append(int(row[column_index]))
+            if row[column_index].isdigit():
+                values.append(int(row[column_index]))
     return values
 
 def calculate_percentiles(data):

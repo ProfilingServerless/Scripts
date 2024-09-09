@@ -135,8 +135,10 @@ def get_patch_duration(decisions, patches):
     for deployment in patches:
         durations[deployment] = []
         for timestamp, scale in patches[deployment]:
-            decision_timestamp = max(filter(lambda d: d[0] < timestamp and d[2] == scale, decisions[deployment]), key=lambda x: x[0])
-            durations[deployment].append(timestamp - decision_timestamp[0])
+            tmp = list(filter(lambda d: d[0] < timestamp and d[2] == scale, decisions[deployment]))
+            if len(tmp) > 0:
+                decision_timestamp = max(tmp, key=lambda x: x[0])
+                durations[deployment].append(timestamp - decision_timestamp[0])
     return durations
             
 def get_schedule_durations(create_data, bind_data):

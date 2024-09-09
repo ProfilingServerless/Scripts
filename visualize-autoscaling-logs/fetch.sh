@@ -8,10 +8,12 @@ mkdir -p $RES_DIR
 cd $RES_DIR
 
 scp -r vhive-loader:/users/mghgm/outs/* .
-scp vhive-loader:/user/mghgm/loader/data/trace/example/invocations.csv .
+scp vhive-loader:/users/mghgm/loader/data/traces/example/invocations.csv .
+scp vhive-loader:/users/mghgm/loader/cmd/config.json .
+scp vhive-loader:/users/mghgm/loader/data/out/experiment_duration_480.csv
+scp vhive-loader:/users/mghgm/loader/data/out/experiment_kn_stats_480.csv
 
 echo "Extracting logs ..."
-cd $RES_DIR
 tar xvf master.tar.gz 
 
 touch e2es
