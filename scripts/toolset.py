@@ -6,7 +6,7 @@ import pandas as pd
 
 
 EXPERIMENT_DURATION = 480
-INVOCATIONS_CSV = os.path.joint(os.getenv('LOADER_DIR', '~/loader'), f'data/out/experiment_kn_stats_{EXPERIMENT_DURATION}.csv')
+INVOCATIONS_CSV = os.path.join(os.getenv('LOADER_DIR', '~/loader'), f'data/out/experiment_kn_stats_{EXPERIMENT_DURATION}.csv')
 
 def epoch_micro2formated(microseconds):
     dt = datetime.fromtimestamp(microseconds / 1_000_000, tz=timezone.utc)
