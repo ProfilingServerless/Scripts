@@ -11,7 +11,7 @@ function i_install_go {
 }
 
 function ii_set_configs {
-    cd /tmp && rm -rf experiment-toolset && git clone https://github.com/ProfilingServerless/experiment-toolset.git && experiment-toolset
+    cd /tmp && rm -rf experiment-toolset && git clone https://github.com/ProfilingServerless/experiment-toolset.git && cd experiment-toolset
     mv scripts/configs/loader_config.json ~/loader/cmd/config.json
 }
 
