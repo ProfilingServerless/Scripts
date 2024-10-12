@@ -16,7 +16,7 @@ def epoch_micro2formated(microseconds):
 
 def export_durations():
     df = pd.read_csv(INVOCATIONS_CSV, skiprows=1) 
-    col1 = df.iloc[:, 2]
+    col1 = df.iloc[:, 0]
     start = col1.min()
     end = col1.max()
     
