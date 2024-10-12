@@ -20,10 +20,11 @@ def export_durations():
     start = col1.min()
     end = col1.max()
     
-    export_message = f"""
+    message = f"""
         Start: {epoch_micro2formated(start)}
         End: {epoch_micro2formated(end)}
     """
+    print(message)
 
 
 
