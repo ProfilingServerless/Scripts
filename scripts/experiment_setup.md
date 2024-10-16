@@ -14,7 +14,7 @@ DEPLOY_PROMETHEUS=true
 ```
 4. On loader: `cd /tmp/invitro && ./scripts/setups/create_multinode.sh <master-ip> <loader-ip> <worker01-ip> <worker02-ip> <worker03-ip> <worker04-ip>`
 5. (optional) Zipkin???
-6. On loader: `git clone https://github.com/ProfilingServerles s/experiment-toolset.git ~/experiment-toolset && ~/experiment-toolset/scripts/reconfigure_loader.sh`
-7. On master: `git clone https://github.com/ProfilingServerles s/experiment-toolset.git ~/experiment-toolset && ~/experiment-toolset/scripts/reconfigure_master.sh`
-8. On workers: `git clone https://github.com/ProfilingServerles s/experiment-toolset.git ~/experiment-toolset && ~/experiment-toolset/scripts/reconfigure_worker.sh`
+6. On loader: `git clone https://github.com/ProfilingServerless/experiment-toolset.git ~/experiment-toolset && ~/experiment-toolset/scripts/reconfigure_loader.sh`
+7. On master: `git clone https://github.com/ProfilingServerless/experiment-toolset.git ~/experiment-toolset && ~/experiment-toolset/scripts/reconfigure_master.sh`
+8. On workers: `git clone https://github.com/ProfilingServerless/experiment-toolset.git ~/experiment-toolset && ~/experiment-toolset/scripts/reconfigure_worker.sh`
 9. Trace Generator??
