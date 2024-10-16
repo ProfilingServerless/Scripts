@@ -15,8 +15,10 @@ function ii_set_configs {
     mv scripts/configs/loader_config.json ~/loader/cmd/config.json
 }
 
-
-i_install_go
+if command -v go &> /dev/null
+then
+    i_install_go
+fi
 ii_set_configs
 
 
