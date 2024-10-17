@@ -25,6 +25,9 @@ DEPLOY_PROMETHEUS=true
 3. `go run ~/loader/cmd/loader.go --config=~/loader/cmd/config.json`
 
 ## Plot
-1. On loader:
-2. On master: `` 
-3. On worker: `` 
+- Loader:
+  - Actual Duration: `do sth` 
+- Master:
+  -
+- Worker:
+  -
