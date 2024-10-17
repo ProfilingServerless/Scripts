@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-mkdir -p outs && rm ~/outs/*
+mkdir -p ~/outs && rm ~/outs/*
 
 declare -A sessions
 sessions=(
