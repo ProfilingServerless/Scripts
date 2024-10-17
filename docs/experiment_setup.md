@@ -18,3 +18,13 @@ DEPLOY_PROMETHEUS=true
 7. On master: `git clone https://github.com/ProfilingServerless/experiment-toolset.git ~/experiment-toolset && ~/experiment-toolset/setup/reconfigure_master.sh`
 8. On workers: `git clone https://github.com/ProfilingServerless/experiment-toolset.git ~/experiment-toolset && ~/experiment-toolset/setup/reconfigure_worker.sh`
 9. Trace Generator??
+
+## Run Experiment
+1. Generate Trace  
+2. Run recorders
+3. `go run ~/loader/cmd/loader.go --config=~/loader/cmd/config.json`
+
+## Plot
+1. On loader:
+2. On master: `` 
+3. On worker: `` 
