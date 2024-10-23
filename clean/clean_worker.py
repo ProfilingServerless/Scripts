@@ -13,7 +13,7 @@ with open('/users/mghgm/outs/first_seen_clean.csv', mode='r', newline="") as f:
             else:
                 pods[pod] = [row[1], -1, -1, -1, -1, -1, -1]
 
-with open('/users/mghgm/outs/strtup_duration_clean.csv', mode='r', newline="") as f:
+with open('/users/mghgm/outs/startup_duration_clean.csv', mode='r', newline="") as f:
     reader = csv.reader(f)
     for row in reader:
         if row:
