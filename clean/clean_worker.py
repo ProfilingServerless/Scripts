@@ -41,7 +41,7 @@ with open('~/outs/sandbox_clean.txt', mode='r', newline="") as f:
                     pods[pod][2] = row[1]
 
                 else:
-                    pods[pod] = [-1, -1, row[1], -1, -1, -1, -1]]
+                    pods[pod] = [-1, -1, row[1], -1, -1, -1, -1]
 
 
 
