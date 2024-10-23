@@ -10,4 +10,4 @@ awk -F' ' '{ print $14","$16","$35}' ~/outs/startup_duration.txt | sed -E 's/pod
 awk -F' ' '/Name:queue-proxy/ { print $NF","$7",queue" } /Name:user-container/ { print $NF","$7",user" }' ~/outs/container.txt | sed 's/pod="\([^"]*\)"/\1/' > container_clean.csv
 
 # pod_name,timestamp,end/start
-awk -F' ' '/Creating/ { print $NF","$7",start" } /Created/ { print $NF","$7",end" }' ~/outs/container.txt | sed 's/pod="\([^"]*\)"/\1/' > container_clean.csv
+awk -F' ' '/Creating/ { print $NF","$7",start" } /Created/ { print $NF","$7",end" }' ~/outs/sandbox.txt | sed 's/pod="\([^"]*\)"/\1/' > sandbox_clean.csv
