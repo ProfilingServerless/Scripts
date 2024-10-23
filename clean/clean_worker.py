@@ -30,11 +30,19 @@ with open('~/outs/sandbox_clean.txt', mode='r', newline="") as f:
     for row in reader:
         if row:
             pod = row[0]
-            if pod in pods:
-                pods[pod][1] = row[1] if row[2] == 'start' else pods[pod][2] = row[1]
+            if row[2] == 'start':
+                if pod in pods:
+                    pods[pod][1] = row[1]
 
+                else:
+                    pods[pod] = [-1, row[1], -1, -1, -1, -1, -1] 
             else:
-                pods[pod] = [-1, row[1], -1, -1, -1, -1, -1] if row[2] == 'start' else pods[pod] = [-1, -1, row[1], -1, -1, -1, -1]]
+                if pod in pods:
+                    pods[pod][2] = row[1]
+
+                else:
+                    pods[pod] = [-1, -1, row[1], -1, -1, -1, -1]]
+
 
 
 with open('~/outs/container_clean.txt', mode='r', newline="") as f:
@@ -42,11 +50,18 @@ with open('~/outs/container_clean.txt', mode='r', newline="") as f:
     for row in reader:
         if row:
             pod = row[0]
-            if pod in pods:
-                pods[pod][3] = row[1] if row[2] == 'queue' else pods[pod][4] = row[1]
+            if row[2] == 'queue':
+                if pod in pods:
+                    pods[pod][3] = row[1]
 
+                else:
+                    pods[pod] = [-1, -1, -1, row[1], -1, -1, -1]
             else:
-                pods[pod] = [-1, -1, -1, row[1], -1, -1, -1] if row[2] == 'queue' else pods[pod] = [-1, -1, -1, -1, row[1], -1, -1]
+                if pod in pods:
+                    pods[pod][4] = row[1]
+
+                else:
+                    pods[pod] = [-1, -1, -1, -1, row[1], -1, -1]
 
 
 with open('~/outs/pods.txt') as f:
