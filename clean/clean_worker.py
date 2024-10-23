@@ -66,6 +66,7 @@ with open('/users/mghgm//outs/pods.csv', mode='w') as f:
     writer = csv.writer(f)
     for k, v in pods.items():
         row = [k] + v
-        writer.writerow([key, value])
+        writer.writerow(row)
+
 
 
