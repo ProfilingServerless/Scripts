@@ -1,11 +1,9 @@
 import csv
 
-FIRST_SEEN='~/outs/first_seen.txt'
-
 # pod: first_seen,sandbox_start,sandbox_end,queue_start,user_start,observed_running,e2e_duration
 pods = dict()
 
-with open('~/outs/first_seen_clean.txt', mode='r', newline="") as f:
+with open('~/outs/first_seen_clean.csv', mode='r', newline="") as f:
     reader = csv.reader(f)
     for row in reader:
         if row:
@@ -15,7 +13,7 @@ with open('~/outs/first_seen_clean.txt', mode='r', newline="") as f:
             else:
                 pods[pod] = [row[1], -1, -1, -1, -1, -1, -1]
 
-with open('~/outs/strtup_duration_clean.txt', mode='r', newline="") as f:
+with open('~/outs/strtup_duration_clean.csv', mode='r', newline="") as f:
     reader = csv.reader(f)
     for row in reader:
         if row:
@@ -25,7 +23,7 @@ with open('~/outs/strtup_duration_clean.txt', mode='r', newline="") as f:
             else:
                 pods[pod] = [-1, -1, -1, -1, -1, row[1], row[2]]
 
-with open('~/outs/sandbox_clean.txt', mode='r', newline="") as f:
+with open('~/outs/sandbox_clean.csv', mode='r', newline="") as f:
     reader = csv.reader(f)
     for row in reader:
         if row:
@@ -45,7 +43,7 @@ with open('~/outs/sandbox_clean.txt', mode='r', newline="") as f:
 
 
 
-with open('~/outs/container_clean.txt', mode='r', newline="") as f:
+with open('~/outs/container_clean.csv', mode='r', newline="") as f:
     reader = csv.reader(f)
     for row in reader:
         if row:
@@ -64,7 +62,7 @@ with open('~/outs/container_clean.txt', mode='r', newline="") as f:
                     pods[pod] = [-1, -1, -1, -1, row[1], -1, -1]
 
 
-with open('~/outs/pods.txt') as f:
+with open('~/outs/pods.csv') as f:
     writer = csv.writer(f)
     for k, v in pods.items():
         row = [k] + v
