@@ -1,6 +1,6 @@
 import csv
 
-# pod: first_seen,sandbox_start,sandbox_end,queue_start,user_start,observed_running,e2e_duration
+# pod: first_seen,sandbox_start,sandbox_end,queue_start,user_start,e2e_duration,observed_running
 pods = dict()
 
 with open('/users/mghgm/outs/first_seen_clean.csv', mode='r', newline="") as f:
